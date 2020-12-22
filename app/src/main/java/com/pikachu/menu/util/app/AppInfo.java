@@ -23,12 +23,17 @@ public class AppInfo {
 
 
 
+    ///////////////  KEY //////////////
+    public static final String APP_KEY_INTO =  "APP_KEY_INTO";
+
 
     ////////////    API     ///////
     //用于加载图片列表
     public static final String APP_API_HOST = "https://m.meishij.net";
     public static final String APP_API_SORT =  APP_API_HOST + "/fenlei/";
     public static final String APP_API_IMAGE_LIST =  APP_API_HOST +"/ajax/index_search_new.php?type={type}&page={page}";
+    public static final String APP_API_SORT_ONE =  APP_API_HOST +"/caipudaquan/";
+
 
 
 

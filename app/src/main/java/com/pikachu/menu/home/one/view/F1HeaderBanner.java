@@ -49,8 +49,8 @@ public class F1HeaderBanner {
 
     private void init() {
         steMenuOnClick(
-                R.id.f1_h_lin1,R.id.f1_h_lin2, R.id.f1_h_lin3,
-                R.id.f1_h_lin4, R.id.f1_h_lin5,R.id.f1_h_lin6);
+                R.id.f1_h_lin1,R.id.f1_h_lin2, R.id.f1_h_lin3, R.id.f1_h_lin4,
+                R.id.f1_h_lin5, R.id.f1_h_lin6,R.id.f1_h_lin7,R.id.f1_h_lin8);
 
         loadBanner();
 
@@ -82,6 +82,9 @@ public class F1HeaderBanner {
 
     }
 
+    public void reLoad(){
+        loadBanner();
+    }
 
 
 

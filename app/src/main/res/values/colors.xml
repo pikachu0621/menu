@@ -5,6 +5,7 @@
     <color name="purple_1">#80F6B2B1</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="white_0">#FFF0F0F0</color>
     <color name="white_1">#FFEAEAEA</color>
 
     <color name="white_A0F">#A0FFFFFF</color>
@@ -22,10 +23,13 @@
 
 
 
-    <color name="zao">#2AC1AA</color>
+    <color name="zao">#2AC180</color>
     <color name="wu">#BCC12A</color>
-    <color name="wan">#C15F2A</color>
+    <color name="wan">#2AB4C1</color>
     <color name="ye">#2A61C1</color>
+
+    <color name="rou">#C16B2A</color>
+    <color name="shi">#C13C2A</color>
     <color name="cai">#76C12A</color>
     <color name="pai">#C12A7D</color>
 
