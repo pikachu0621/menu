@@ -40,6 +40,9 @@ public class AppInfo {
     public static String getUrl(int type, int page) {
         return APP_API_IMAGE_LIST.replace("{type}",""+type).replace("{page}",""+page);
     }
+    public static String getUrl(String type, int page) {
+        return  getUrl(Integer.parseInt(type), page);
+    }
 
 
 

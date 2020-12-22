@@ -7,6 +7,8 @@ package com.pikachu.menu.cls;
 
 
 
+import android.text.Html;
+
 import com.pikachu.menu.util.app.AppInfo;
 import com.pikachu.menu.util.app.Tools;
 
@@ -84,7 +86,7 @@ public class HomeF1Data {
     }
 
 
-    //用于分类
+    //用于分类/点击查看
     private List<Sort> sort;
     public static class Sort implements Serializable {
 
@@ -173,14 +175,116 @@ public class HomeF1Data {
 
         private String url; // 跳转url
         private String imageUrl; // 图片url
-        private String userImageUrl; // 作者图片url
-        private String userNameStr; // 作者名
         private String titleStr; //标题
-        private boolean isToDetails; //是否跳转到菜品详情页
+        private float minute = 4.5f; //评分
+        private String like ; // 喜欢
+        private String browse ; // 浏览
 
+        public HtmlData(String url, String imageUrl, String titleStr, float minute, String like, String browse) {
+            this.url = url;
+            this.imageUrl = imageUrl;
+            this.titleStr = titleStr;
+            this.minute = minute;
+            this.like = like;
+            this.browse = browse;
+        }
+
+        public HtmlData(){}
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
+
+        public String getTitleStr() {
+            return titleStr;
+        }
+
+        public void setTitleStr(String titleStr) {
+            this.titleStr = titleStr;
+        }
+
+        public float getMinute() {
+            return minute;
+        }
+
+        public void setMinute(float minute) {
+            this.minute = minute;
+        }
+
+        public String getLike() {
+            return like;
+        }
+
+        public void setLike(String like) {
+            this.like = like;
+        }
+
+        public String getBrowse() {
+            return browse;
+        }
+
+        public void setBrowse(String browse) {
+            this.browse = browse;
+        }
 
         //con_data_s2_list">
 
+
+    }
+
+    ////////////////////////////// html 转 实体类 //////////////////////////
+    public static List<HtmlData> getHtmlData(String htmlStr) throws Exception{
+
+        String str1 = Tools.cutStr(htmlStr, "con_data_s2w\">", "</ul>");
+        assert str1 != null;
+        String[] split1 = str1.split("</li>");
+        List<HtmlData> htmlData = new ArrayList<>();
+
+        for (String str2 : split1){
+
+            //如果不包含则数据不符合
+            if (str2 == null || str2.equals("") || !str2.contains("alt=\""))
+                continue;
+            //跳转链接
+            HtmlData htmlData1 = new HtmlData();
+
+            // 跳转 url
+            String url = Tools.cutStr(str2,"href=\"","\"");
+            htmlData1.setUrl(url);
+
+            // 菜品大图url
+            String imageUrl = Tools.cutStr(str2,"src=\"","\"");
+            htmlData1.setImageUrl(imageUrl);
+
+            //菜品名
+            String titleStr = Tools.cutStr(str2,"alt=\"","\"");
+            htmlData1.setTitleStr(titleStr);
+
+
+            //喜欢
+            String like = Tools.cutStr(str2,"_386.png\">","<");
+            htmlData1.setLike(like);
+
+            //浏览
+            String browse = Tools.cutStr(str2,"_125.png\">","<");
+            htmlData1.setBrowse(browse);
+
+            htmlData.add(htmlData1);
+
+        }
+        return htmlData;
 
     }
 
@@ -191,13 +295,9 @@ public class HomeF1Data {
 
 
 
+    ////////////////////////////   轮播Str 转 实体类     ////////////////
 
-
-
-
-    ////////////////////////////   轮播数据获取     ////////////////
-
-    public static List<Banner> getBannerData(String htmlStr){
+    public static List<Banner> getBannerData(String htmlStr) throws Exception{
 
         String str1 = Tools.cutStr(htmlStr, "swiper-wrapper\">", "<script>");
 
@@ -246,8 +346,8 @@ public class HomeF1Data {
 
 
 
-    /////////////////////   获取分类数据     ////////////////////////////
-    public static List<List<Sort>> getSortData(String htmlStr){
+    /////////////////////   分类Str 转 实体类     ////////////////////////////
+    public static List<List<Sort>> getSortData(String htmlStr) throws Exception{
 
         List<Sort> sortRight = new ArrayList<>();
         List<Sort> sortsLift = new ArrayList<>();
@@ -336,13 +436,12 @@ public class HomeF1Data {
         sorts.add(new Sort(Sort.toURl("wucan/"),null,"午餐",0));
         sorts.add(new Sort(Sort.toURl("wancan/"),null,"晚餐",0));
         sorts.add(new Sort(Sort.toURl("yexiao/"),null,"夜宵",0));
-        sorts.add(new Sort(AppInfo.getUrl(3,1),null,"推荐肉食",2));
-        sorts.add(new Sort(AppInfo.getUrl(2,1),null,"死令菜",2));
+        sorts.add(new Sort("3",null,"推荐肉食",2));
+        sorts.add(new Sort("2",null,"时令菜",2));
         sorts.add(new Sort(null,null,"菜谱分类",1));
         sorts.add(new Sort("https://m.meishij.net/html5/week.php",null,"人气排行",3));
         return sorts;
     }
-
 
 
 }

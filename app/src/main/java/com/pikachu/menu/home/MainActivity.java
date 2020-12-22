@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
     private void init() {
         fragments = new ArrayList<>();
-        fragments.add(new OneFragment());
+        fragments.add(new OneFragment(this));
         fragments.add(new TowFragment());
         fragments.add(new ThreeFragment());
         pagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
@@ -93,6 +93,10 @@ public class MainActivity extends BaseActivity {
 
 
 
+
+    public void setPager(int pager){
+        mainPager.setCurrentItem(pager);
+    }
 
 
 

@@ -14,9 +14,9 @@ import androidx.annotation.Nullable;
 
 public class ScoreView extends View {
     private int maxPoints = 5;
-    private float points = 2.6f;
-    private int theColor = 0xffff0000;
-    private int notColor = 0x50ff0000;
+    private float points = 4.2f;
+    private int theColor = 0xFFF6B2B1;
+    private int notColor = 0x80F6B2B1;
     private int textColor = 0xFF000000;
     private int gap = 20, gaps = 0;
     private Paint paint = new Paint();

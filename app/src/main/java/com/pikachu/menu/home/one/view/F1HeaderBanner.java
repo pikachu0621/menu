@@ -67,7 +67,14 @@ public class F1HeaderBanner {
 
             @Override
             public void finish(String str) {
-                List<HomeF1Data.Banner> bannerData = HomeF1Data.getBannerData(str);
+                List<HomeF1Data.Banner> bannerData = null;
+                try {
+                    bannerData = HomeF1Data.getBannerData(str);
+                } catch (Exception e) {
+                    Tools.showToast(activity,"F1 轮播解析失败");
+                    e.printStackTrace();
+                    return;
+                }
                 F1BannerAdapter f1BannerAdapter = new F1BannerAdapter(R.layout.ui_f1_header_item,activity, bannerData, onClickHeaderListener::OnClickBannerItem);
                 f1HBanner.setAdapter(f1BannerAdapter);
                 f1HBanner.setAutoTurningTime(AppInfo.APP_HOME_F1_AUTO_TIME *1000);

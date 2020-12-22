@@ -179,6 +179,7 @@ public class ThreeFragment extends BaseFragment implements F1RecyclerAdapter.OnC
     @Override
     public void OnClickItem(View view, int position, JsonF1List.DataBean.ItemsBean itemsBean) {
         showToast("F1 " + position + " data: " + itemsBean.getTitle());
+        Tools.startLookActivity(activity , itemsBean.getPath(),itemsBean.getImg(),itemsBean.getTitle());
     }
 
 

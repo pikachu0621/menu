@@ -4,8 +4,7 @@
     android:id="@+id/ui_refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@android:color/transparent">
 
     <!--  <com.scwang.smart.refresh.header.ClassicsHeader
           android:layout_width="match_parent"
@@ -25,7 +24,8 @@
         android:id="@+id/ui_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never" />
+        android:overScrollMode="never"
+        android:background="@android:color/transparent"/>
 
     <com.scwang.smart.refresh.footer.ClassicsFooter
         android:layout_width="match_parent"

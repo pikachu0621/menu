@@ -1,5 +1,6 @@
 package com.pikachu.menu.home.tow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pikachu.menu.R;
 import com.pikachu.menu.cls.HomeF1Data;
 import com.pikachu.menu.home.tow.adapter.F2Adapter;
+import com.pikachu.menu.list.HtmlListActivity;
 import com.pikachu.menu.util.app.AppInfo;
 import com.pikachu.menu.util.app.Tools;
 import com.pikachu.menu.util.base.BaseFragment;
@@ -71,7 +73,7 @@ public class TowFragment extends BaseFragment implements F2Adapter.OnClickF2Item
         uiRefreshLayout.setEnableLoadMore(false);//是否启用上拉加载功能
         uiRefreshLayout.setEnableOverScrollDrag(true);//是否启用越界拖动（仿苹果效果）1.0.4
         uiRefreshLayout.setOnRefreshListener(refreshLayout -> loadTitle());
-        uiRefreshLayout.setOnLoadMoreListener(refreshLayout -> loadTitle());
+        //uiRefreshLayout.setOnLoadMoreListener(refreshLayout -> loadTitle());
         uiRecycler.setBackgroundColor(activity.getResources().getColor(R.color.white_0));
         uiRefreshLayout.setBackgroundColor(activity.getResources().getColor(R.color.white_0));
         this.url = AppInfo.APP_API_SORT_ONE;
@@ -90,7 +92,16 @@ public class TowFragment extends BaseFragment implements F2Adapter.OnClickF2Item
 
             @Override
             public void finish(String str) {
-                List<List<HomeF1Data.Sort>> sortData = HomeF1Data.getSortData(str);
+
+                List<List<HomeF1Data.Sort>> sortData = null;
+                try {
+                    sortData = HomeF1Data.getSortData(str);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showToast("f2 数据解析失败");
+                    uiRefreshLayout.finishRefresh(false);
+                    return;
+                }
                 if (isLift) {
                     if (f2AdapterLift == null) {
                         f2AdapterLift = new F2Adapter(activity, sortData.get(0), true, TowFragment.this);
@@ -148,13 +159,20 @@ public class TowFragment extends BaseFragment implements F2Adapter.OnClickF2Item
     // right 没有图片的点击事件
     @Override
     public void OnClickRightOntImageItem(View view, int position, HomeF1Data.Sort sort, List<HomeF1Data.Sort> sorts) {
-
+        showToast(sort.getUrl());
     }
 
     // right 有图片的点击事件
     @Override
     public void OnClickRightImageItem(View view, int position, HomeF1Data.Sort sort, List<HomeF1Data.Sort> sorts) {
-
+        showToast(sort.getUrl());
+        if (sort.getUrl().contains(".php?")) {
+            showToast("此URL还没适配");
+            return;
+        }
+        Intent intent = new Intent(activity, HtmlListActivity.class);
+        intent.putExtra(AppInfo.APP_KEY_INTO, sort);
+        startActivity(intent);
     }
 
 

@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Menu"
         tools:targetApi="n">
-        <activity android:name=".list.HtmlListActivity"></activity>
+        <activity android:name=".look.LookActivity"></activity>
+        <activity android:name=".list.HtmlListActivity" />
         <activity android:name=".home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

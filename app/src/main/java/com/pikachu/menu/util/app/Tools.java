@@ -19,6 +19,9 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 
+import com.pikachu.menu.cls.HomeF1Data;
+import com.pikachu.menu.look.LookActivity;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -177,6 +180,19 @@ public class Tools {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setData(Uri.parse(url));
+        activity.startActivity(intent);
+    }
+
+
+
+
+    public static void startLookActivity(Activity activity, String url, String imageUrl, String titleStr){
+        startLookActivity(activity,new HomeF1Data.Sort(url,imageUrl,titleStr,0,false));
+    }
+
+    public static void startLookActivity(Activity activity, HomeF1Data.Sort sort){
+        Intent intent = new Intent(activity, LookActivity.class);
+        intent.putExtra(AppInfo.APP_KEY_INTO,sort);
         activity.startActivity(intent);
     }
 

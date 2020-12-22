@@ -1,5 +1,6 @@
 package com.pikachu.menu.home.one;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +19,10 @@ import com.google.gson.reflect.TypeToken;
 import com.pikachu.menu.R;
 import com.pikachu.menu.cls.HomeF1Data;
 import com.pikachu.menu.cls.JsonF1List;
+import com.pikachu.menu.home.MainActivity;
 import com.pikachu.menu.home.one.adapter.F1RecyclerAdapter;
 import com.pikachu.menu.home.one.view.F1HeaderBanner;
+import com.pikachu.menu.list.HtmlListActivity;
 import com.pikachu.menu.util.app.AppInfo;
 import com.pikachu.menu.util.app.Tools;
 import com.pikachu.menu.util.base.BaseFragment;
@@ -36,6 +39,7 @@ import java.util.List;
 public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickHeaderListener, F1RecyclerAdapter.OnClickF1RecyclerItemListener {
 
 
+    private final MainActivity activity1;
     private View inflate;
     private SmartRefreshLayout uiRefreshLayout;
     private RecyclerView uiRecycler;
@@ -49,8 +53,9 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
     private int minPager = 0;
     private int page;
 
-    public OneFragment() {
+    public OneFragment(MainActivity activity) {
         // Required empty public constructor
+        activity1 = activity;
     }
 
 
@@ -174,9 +179,7 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
             }
         }
 
-
         return json.replace("(", "").replace(")", "").replace("\":\"\"","\":null");
-
     }
 
 
@@ -213,18 +216,32 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
     @Override
     public void OnClickBannerItem(View view, int position, HomeF1Data.Banner banner) {
         showToast("F1 " + position + " data: " + banner.getUserNameStr());
+
+        Tools.startLookActivity(activity,banner.getUrl(),banner.getImageUrl(),banner.getTitleStr());
     }
 
     //6个按键点击
     @Override
     public void OnClickHeaderItem(View view, int position, HomeF1Data.Sort sort) {
+
         showToast("F1 " + position + " data: " + sort.getTitleStr());
+
+        if (sort.getToType() == 1){
+            activity1.setPager(1);
+            return;
+        }
+        Intent intent = new Intent(activity, HtmlListActivity.class);
+        intent.putExtra(AppInfo.APP_KEY_INTO,sort);
+        startActivity(intent);
+
     }
 
     //推荐列表点击
     @Override
     public void OnClickItem(View view, int position, JsonF1List.DataBean.ItemsBean itemsBean) {
         showToast("F1 " + position + " data: " + itemsBean.getTitle());
+
+        Tools.startLookActivity(activity,itemsBean.getPath(),itemsBean.getImg(),itemsBean.getTitle());
     }
 
 
