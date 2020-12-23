@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -12,6 +13,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.pikachu.menu.R;
 import com.pikachu.menu.cls.HomeF1Data;
+import com.pikachu.menu.look.adapter.LookAdapter;
+import com.pikachu.menu.look.view.LookHeaderBanner;
 import com.pikachu.menu.util.app.AppInfo;
 import com.pikachu.menu.util.base.BaseActivity;
 import com.pikachu.menu.util.url.LoadUrl;
@@ -29,7 +32,10 @@ public class LookActivity extends BaseActivity {
     private HomeF1Data.Sort sort;
     private String url;
     private AppBarLayout lookAppbar;
-    private ImageView lookImage;
+    private String titleStr;
+    private String imageUrl;
+    private LookAdapter lookAdapter;
+    private LookHeaderBanner lookHeaderBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +59,22 @@ public class LookActivity extends BaseActivity {
         uiRefreshLayout.setEnableAutoLoadMore(true);
         uiRefreshLayout.setEnableLoadMore(false);//是否启用上拉加载功能
         uiRefreshLayout.setEnableOverScrollDrag(true);//是否启用越界拖动（仿苹果效果）1.0.4
-        //uiRefreshLayout.setOnRefreshListener(refreshLayout -> load());
+        uiRefreshLayout.setOnRefreshListener(refreshLayout -> load());
 
         url = sort.getUrl();
+        titleStr = sort.getTitleStr();
+        imageUrl = sort.getImageUrl();
 
-        Glide.with(this)
-                .load(sort.getImageUrl())
-                .transition(DrawableTransitionOptions.withCrossFade(AppInfo.APP_ANIMATION_TIME))
-                .into(lookImage);
-
+        //开始加载
+        load();
     }
 
     private void load() {
 
 
         new LoadUrl(this, url, new LoadUrl.OnCall() {
+
+
             @Override
             public void error(Exception e) {
                 showToast("Look " + e.getMessage());
@@ -76,9 +83,23 @@ public class LookActivity extends BaseActivity {
 
             @Override
             public void finish(String str) {
+                HomeF1Data.HtmlMenu htmlMenu = null;
+                try {
+                    htmlMenu = HomeF1Data.getHtmlMenu(str, imageUrl, titleStr);
+                } catch (Exception e) {
+                    showToast("Look 数据解析失败");
+                    uiRefreshLayout.finishRefresh(false);
+                }
 
 
+
+                lookHeaderBanner = new LookHeaderBanner(LookActivity.this, htmlMenu);
+                lookAdapter = new LookAdapter(LookActivity.this, htmlMenu.getSteps());
+                lookAdapter.addHeaderView(lookHeaderBanner.getView());
+                uiRecycler.setAdapter(lookAdapter);
+                uiRecycler.setLayoutManager(new LinearLayoutManager(LookActivity.this));
                 uiRefreshLayout.finishRefresh(true);
+
             }
         });
 
@@ -91,6 +112,6 @@ public class LookActivity extends BaseActivity {
         uiRefreshLayout = findViewById(R.id.ui_refreshLayout);
         uiRecycler = findViewById(R.id.ui_recycler);
         lookAppbar = findViewById(R.id.look_appbar);
-        lookImage = findViewById(R.id.look_image);
+        /* lookImage = findViewById(R.id.look_image);*/
     }
 }

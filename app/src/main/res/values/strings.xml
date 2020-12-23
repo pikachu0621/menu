@@ -18,4 +18,11 @@
     <string name="app_home_shi">时令菜</string>
     <string name="app_refuel">日出东方催人醒，不及晚霞懂我心</string>
     <string name="app_home_keep">我的收藏</string>
+    <string name="app_look_1">烹饪方法</string>
+    <string name="app_look_2">口味</string>
+    <string name="app_look_3">时间</string>
+    <string name="app_look_4">热量</string>
+    <string name="app_look_5">难度</string>
+    <string name="app_look_z">主料</string>
+    <string name="app_look_fu">辅料</string>
 </resources>

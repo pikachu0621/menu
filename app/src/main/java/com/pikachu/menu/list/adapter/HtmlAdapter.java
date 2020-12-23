@@ -53,6 +53,7 @@ public class HtmlAdapter extends BaseQuickAdapter<HomeF1Data.HtmlData, BaseViewH
                 .transition(DrawableTransitionOptions.withCrossFade(AppInfo.APP_ANIMATION_TIME))
                 .into((ImageView) baseViewHolder.getView(R.id.html_item_image1));
 
+        baseViewHolder.getView(R.id.html_item_lin1).setOnClickListener(v -> onClickHtmlItemListener.OnClickItem(v,getItemPosition(htmlData),htmlData,data));
     }
 
 

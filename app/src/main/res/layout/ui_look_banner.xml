@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="6dp"
+        app:cardMaxElevation="6dp"
+        android:layout_margin="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <ImageView
+                android:id="@+id/look_banner_image1"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:src="@drawable/ic_author"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/look_text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_f3_title"
+                    android:textSize="18sp"
+                    android:theme="@style/index_text_bottom3" />
+
+                <TextView
+                    android:id="@+id/look_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/app_refuel"
+                    android:textSize="10sp"
+                    android:theme="@style/index_text_bottom2" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/app_look_1"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/look_text3"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_home_wu"
+                            android:textSize="12sp"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp"
+                            android:gravity="center"
+                            android:lines="1"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/app_look_2"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/look_text4"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_home_wu"
+                            android:textSize="12sp"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp"
+                            android:gravity="center"
+                            android:lines="1"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/app_look_3"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/look_text5"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_home_wu"
+                            android:textSize="12sp"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp"
+                            android:gravity="center"
+                            android:lines="1"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/app_look_4"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/look_text6"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_home_wu"
+                            android:textSize="12sp"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp"
+                            android:gravity="center"
+                            android:lines="1"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/app_look_5"
+                            android:textSize="10sp"
+                            android:textStyle="italic"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp" />
+                        <TextView
+                            android:id="@+id/look_text7"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/app_home_wu"
+                            android:textSize="12sp"
+                            android:theme="@style/index_text_bottom3"
+                            tools:ignore="SmallSp"
+                            android:gravity="center"
+                            android:lines="1"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white_1"/>
+
+
+                <TextView
+                    android:layout_marginTop="12dp"
+                    android:id="@+id/look_text8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_refuel"
+                    android:textSize="12sp"
+                    android:theme="@style/index_text_bottom2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_look_z"
+                        android:theme="@style/index_text_bottom3" />
+
+                    <TextView
+                        android:id="@+id/look_text9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_look_1"
+                        android:textSize="10sp"
+                        android:theme="@style/index_text_bottom2"
+                        tools:ignore="SmallSp"
+                        android:layout_marginStart="6dp"
+                        android:lines="1"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/look_lin1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"/>
+
+
+
+
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_look_fu"
+                    android:theme="@style/index_text_bottom3" />
+
+                <LinearLayout
+                    android:id="@+id/look_lin2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"/>
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</LinearLayout>

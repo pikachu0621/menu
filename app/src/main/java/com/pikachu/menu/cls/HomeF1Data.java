@@ -294,7 +294,6 @@ public class HomeF1Data {
 
 
 
-
     ////////////////////////////   轮播Str 转 实体类     ////////////////
 
     public static List<Banner> getBannerData(String htmlStr) throws Exception{
@@ -428,7 +427,6 @@ public class HomeF1Data {
 
 
 
-
     /////////////////////    F1 header 点击事件数据    /////////////////
     public static List<Sort> getOnClickSort(){
         List<Sort> sorts = new ArrayList<>();
@@ -442,6 +440,315 @@ public class HomeF1Data {
         sorts.add(new Sort("https://m.meishij.net/html5/week.php",null,"人气排行",3));
         return sorts;
     }
+
+
+
+
+
+
+
+
+
+    ////菜谱做法实体类
+    public static class HtmlMenu {
+
+
+        private String imageUrl; // 图片url
+        private String titleStr; // 标题
+        private String postInfoStr; // 发布信息
+        private String cookingWay; // 烹饪方法
+        private String cookingTaste; // 烹饪口味
+        private String cookingTime; // 烹饪时间
+        private String cookingHeat; // 烹饪热度
+        private String cookingDifficulty; // 烹饪难度
+        private String contentStr; // 介绍内容
+        private String severalPeople; // 几人
+        private List<MainAndAes> mains; // 主料
+        private List<MainAndAes> aes; // 辅料
+        private List<Step> steps; //步骤
+        public static class MainAndAes{
+            private String dishName; // 菜名
+            private String dishWeight; // 菜重量
+
+            public String getDishName() {
+                return dishName;
+            }
+
+            public void setDishName(String dishName) {
+                this.dishName = dishName;
+            }
+
+            public String getDishWeight() {
+                return dishWeight;
+            }
+
+            public void setDishWeight(String dishWeight) {
+                this.dishWeight = dishWeight;
+            }
+        }
+        public static class Step{
+            private String stepContent; // 步骤内容
+            private String stepImageUrl; // 步骤图片
+
+            public String getStepContent() {
+                return stepContent;
+            }
+
+            public void setStepContent(String stepContent) {
+                this.stepContent = stepContent;
+            }
+
+            public String getStepImageUrl() {
+                return stepImageUrl;
+            }
+
+            public void setStepImageUrl(String stepImageUrl) {
+                this.stepImageUrl = stepImageUrl;
+            }
+        }
+
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
+
+        public String getTitleStr() {
+            return titleStr;
+        }
+
+        public void setTitleStr(String titleStr) {
+            this.titleStr = titleStr;
+        }
+
+        public String getPostInfoStr() {
+            return postInfoStr;
+        }
+
+        public void setPostInfoStr(String postInfoStr) {
+            this.postInfoStr = postInfoStr;
+        }
+
+        public String getCookingWay() {
+            return cookingWay;
+        }
+
+        public void setCookingWay(String cookingWay) {
+            this.cookingWay = cookingWay;
+        }
+
+        public String getCookingTaste() {
+            return cookingTaste;
+        }
+
+        public void setCookingTaste(String cookingTaste) {
+            this.cookingTaste = cookingTaste;
+        }
+
+        public String getCookingTime() {
+            return cookingTime;
+        }
+
+        public void setCookingTime(String cookingTime) {
+            this.cookingTime = cookingTime;
+        }
+
+        public String getCookingHeat() {
+            return cookingHeat;
+        }
+
+        public void setCookingHeat(String cookingHeat) {
+            this.cookingHeat = cookingHeat;
+        }
+
+        public String getCookingDifficulty() {
+            return cookingDifficulty;
+        }
+
+        public void setCookingDifficulty(String cookingDifficulty) {
+            this.cookingDifficulty = cookingDifficulty;
+        }
+
+        public String getContentStr() {
+            return contentStr;
+        }
+
+        public void setContentStr(String contentStr) {
+            this.contentStr = contentStr;
+        }
+
+        public String getSeveralPeople() {
+            return severalPeople;
+        }
+
+        public void setSeveralPeople(String severalPeople) {
+            this.severalPeople = severalPeople;
+        }
+
+        public List<MainAndAes> getMains() {
+            return mains;
+        }
+
+        public void setMains(List<MainAndAes> mains) {
+            this.mains = mains;
+        }
+
+        public List<MainAndAes> getAes() {
+            return aes;
+        }
+
+        public void setAes(List<MainAndAes> aes) {
+            this.aes = aes;
+        }
+
+        public List<Step> getSteps() {
+            return steps;
+        }
+
+        public void setSteps(List<Step> steps) {
+            this.steps = steps;
+        }
+    }
+
+
+    /////////////////// 菜谱做法Str数据 转 实体类  ////////////////////////
+    public static HtmlMenu getHtmlMenu(String htmlStr,String image,String title) throws Exception{
+
+
+        HtmlMenu htmlMenu = new HtmlMenu();
+
+        //大图
+        htmlMenu.setImageUrl(image);
+        //菜谱名
+        htmlMenu.setTitleStr(title);
+
+        String info;
+        //发布信息
+        info = Tools.cutStr(htmlStr, "class=\"posttime\">", "</");
+        htmlMenu.setPostInfoStr(info);
+
+
+
+        //烹饪方法
+        info = Tools.cutStr(htmlStr, "cpargs3\">", "cpargs4\">");
+        info = Tools.cutStr(info, "</div>", "</").replace("\t","");
+        htmlMenu.setCookingWay(info);
+
+        //烹饪口味
+        info = Tools.cutStr(htmlStr, "cpargs2\">", "cpargs3\">");
+        info = Tools.cutStr(info, "</div>", "</").replace("\t","");
+        htmlMenu.setCookingTaste(info);
+
+        //烹饪时间
+        info = Tools.cutStr(htmlStr, "cpargs4\">", "cpargs1\">");
+        info = Tools.cutStr(info, "</div>", "</").replace("\t","");
+        htmlMenu.setCookingTime(info);
+
+        //烹饪热量
+        info = Tools.cutStr(htmlStr, "cpargs1\">", "cpargs5\">");
+        info = Tools.cutStr(info, "</div>", "</").replace("\t","");
+        htmlMenu.setCookingHeat(info);
+
+        //烹饪难度
+        info = Tools.cutStr(htmlStr, "cpargs5\">", null);
+        info = Tools.cutStr(info, "</div>", "</").replace("\t","");
+        htmlMenu.setCookingDifficulty(info);
+
+
+        //介绍
+        info = Tools.cutStr(htmlStr, "id=\"cpdes\"", "<");
+        info = Tools.cutStr(info, ">", "");
+        htmlMenu.setContentStr(info);
+
+
+        //几人份
+        info = Tools.cutStr(htmlStr, "主料<span>", "</");
+        htmlMenu.setSeveralPeople(info);
+
+
+        //主料
+        info = Tools.cutStr(htmlStr, "c_mtr_ul\">", "c_mtr_t\">");
+        assert info != null;
+        String[] infoList = info.split("</div>");
+        List<HtmlMenu.MainAndAes> mains = new ArrayList<>();
+        for (String infoListStr : infoList){
+
+            //如果不包含则数据不符合
+            if (infoListStr == null || infoListStr.equals("") || !infoListStr.contains("class=\"t\">"))
+                continue;
+            HtmlMenu.MainAndAes mainAndAes = new HtmlMenu.MainAndAes();
+
+            //名
+            info = Tools.cutStr(infoListStr, "class=\"t\">", "<");
+            mainAndAes.setDishName(info);
+
+            //重量
+            info = Tools.cutStr(infoListStr, "class=\"a\">", "<");
+            mainAndAes.setDishWeight(info);
+
+            mains.add(mainAndAes);
+        }
+        htmlMenu.setMains(mains); // from mains into  HtmlMenu Class
+
+
+        //辅料
+        info = Tools.cutStr(htmlStr, "id=\"fl_ul\">", "<!--主辅料 end-->");
+        assert info != null;
+        String[] infoList2 = info.split("</div>");
+        List<HtmlMenu.MainAndAes> aes = new ArrayList<>();
+        for (String infoListStr : infoList2){
+
+            //如果不包含则数据不符合
+            if (infoListStr == null || infoListStr.equals("") || !infoListStr.contains("class=\"t1\">"))
+                continue;
+            HtmlMenu.MainAndAes mainAndAes = new HtmlMenu.MainAndAes();
+
+            //名
+            info = Tools.cutStr(infoListStr, "class=\"t1\">", "<");
+            mainAndAes.setDishName(info);
+
+            //重量
+            info = Tools.cutStr(infoListStr, "class=\"a\">", "<");
+            mainAndAes.setDishWeight(info);
+
+            aes.add(mainAndAes);
+        }
+        htmlMenu.setAes(aes);// from aes into  HtmlMenu Class
+
+
+
+
+        //步骤
+        info = Tools.cutStr(htmlStr, "<!-- 步骤 start-->", "<!-- 步骤 end-->");
+        assert info != null;
+        String[] infoList3 = info.split(" class=\"stepitem\">");
+        List<HtmlMenu.Step> steps = new ArrayList<>();
+        for (String infoListStr : infoList3){
+
+            //如果不包含则数据不符合
+            if (infoListStr == null || infoListStr.equals("") || !infoListStr.contains("class=\"stepimg\""))
+                continue;
+            HtmlMenu.Step step = new HtmlMenu.Step();
+
+            //步骤内容
+            info = Tools.cutStr(infoListStr, "step_title\">", "</") + " ->   " +
+                    Tools.cutStr(infoListStr, "stepdes\">", "</");
+            step.setStepContent(info);
+
+            //步骤图片
+            info = Tools.cutStr(infoListStr, "src=\"", "\"");
+            step.setStepImageUrl(info);
+
+            steps.add(step);
+        }
+        htmlMenu.setSteps(steps); // from steps into  HtmlMenu Class
+
+        return htmlMenu;
+    }
+
 
 
 }
