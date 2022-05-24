@@ -70,10 +70,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="@string/app_look_1"
+                            android:text="@string/app_look_2"
                             android:textSize="10sp"
                             android:textStyle="italic"
-                            android:theme="@style/index_text_bottom3"
+                            android:theme="@style/index_text_bottom2"
                             tools:ignore="SmallSp" />
                         <TextView
                             android:id="@+id/look_text3"
@@ -100,10 +100,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:text="@string/app_look_2"
+                            android:text="@string/app_look_1"
                             android:textSize="10sp"
                             android:textStyle="italic"
-                            android:theme="@style/index_text_bottom3"
+                            android:theme="@style/index_text_bottom2"
                             tools:ignore="SmallSp" />
                         <TextView
                             android:id="@+id/look_text4"
@@ -133,7 +133,7 @@
                             android:text="@string/app_look_3"
                             android:textSize="10sp"
                             android:textStyle="italic"
-                            android:theme="@style/index_text_bottom3"
+                            android:theme="@style/index_text_bottom2"
                             tools:ignore="SmallSp" />
                         <TextView
                             android:id="@+id/look_text5"
@@ -163,7 +163,7 @@
                             android:text="@string/app_look_4"
                             android:textSize="10sp"
                             android:textStyle="italic"
-                            android:theme="@style/index_text_bottom3"
+                            android:theme="@style/index_text_bottom2"
                             tools:ignore="SmallSp" />
                         <TextView
                             android:id="@+id/look_text6"
@@ -194,7 +194,7 @@
                             android:text="@string/app_look_5"
                             android:textSize="10sp"
                             android:textStyle="italic"
-                            android:theme="@style/index_text_bottom3"
+                            android:theme="@style/index_text_bottom2"
                             tools:ignore="SmallSp" />
                         <TextView
                             android:id="@+id/look_text7"

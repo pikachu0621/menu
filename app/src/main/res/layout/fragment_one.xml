@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/m_f1_appBar">
-        <include layout="@layout/ui_recycler"/>
+
+        <include layout="@layout/ui_recycler" />
 
     </RelativeLayout>
 
@@ -23,76 +23,79 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentInsetStart="0dp"
+            app:navigationIcon="@null">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentInsetStart="0dp"
-                app:navigationIcon="@null">
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/h_f1_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <View
-                        android:id="@+id/h_f1_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="?actionBarSize"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                    android:layout_height="?actionBarSize"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
 
-                        <com.pikachu.menu.widget.QMUIRadiusImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                    <com.pikachu.menu.widget.QMUIRadiusImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_author"
+                        app:qmui_border_color="@color/purple_1"
+                        app:qmui_border_width="2dp"
+                        app:qmui_is_circle="true" />
+
+                    <RelativeLayout
+                        android:id="@+id/h_f1_text1"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/ic_search_bg">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
                             android:layout_marginStart="16dp"
-                            android:src="@drawable/ic_author"
-                            app:qmui_border_color="@color/purple_1"
-                            app:qmui_border_width="2dp"
-                            app:qmui_is_circle="true" />
+                            android:src="@drawable/ic_search" />
 
-                        <RelativeLayout
-                            android:id="@+id/h_f1_text1"
+
+                        <EditText
+                            android:id="@+id/search_edit"
                             android:layout_width="match_parent"
-                            android:layout_height="36dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/ic_search_bg">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="16dp"
-                                android:src="@drawable/ic_search" />
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="40dp"
-                                android:src="@drawable/ic_search"
-                                android:text="@string/app_author"
-                                android:textColor="@color/black_2"
-                                android:textSize="12sp" />
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="40dp"
+                            android:background="@null"
+                            android:text="@string/app_author"
+                            android:textColor="@color/black_2"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/m_f2_image1"
+                        android:layout_width="?actionBarSize"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="6dp"
+                        android:padding="19dp"
+                        android:src="@drawable/ic_search_d" />
                 </LinearLayout>
 
-            </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
-
 
 
 </RelativeLayout>

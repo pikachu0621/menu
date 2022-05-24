@@ -96,7 +96,7 @@ public class HomeF1Data {
         private String url; // 跳转url
         private String imageUrl; // 图片url
         private String titleStr; //标题
-        private int toType; //要加载的样式  0 加载html  1加载分类   2加载json   3加载排行
+        private int toType; //要加载的样式  0 加载html  1加载分类   2加载json   3加载排行   4搜索
         private boolean isSelected  = false; //是否选中
 
         public Sort(String url, String imageUrl, String titleStr, int toType, boolean isSelected) {
@@ -248,7 +248,9 @@ public class HomeF1Data {
     public static List<HtmlData> getHtmlData(String htmlStr) throws Exception{
 
         String str1 = Tools.cutStr(htmlStr, "con_data_s2w\">", "</ul>");
-        assert str1 != null;
+        if (str1 == null){
+            throw new Exception("截取失败");
+        }
         String[] split1 = str1.split("</li>");
         List<HtmlData> htmlData = new ArrayList<>();
 
@@ -270,6 +272,54 @@ public class HomeF1Data {
 
             //菜品名
             String titleStr = Tools.cutStr(str2,"alt=\"","\"");
+            htmlData1.setTitleStr(titleStr);
+
+
+            //喜欢
+            String like = Tools.cutStr(str2,"_386.png\">","<");
+            htmlData1.setLike(like);
+
+            //浏览
+            String browse = Tools.cutStr(str2,"_125.png\">","<");
+            htmlData1.setBrowse(browse);
+
+            htmlData.add(htmlData1);
+
+        }
+        return htmlData;
+
+    }
+
+
+
+
+
+
+
+
+
+    ////////////////////////////// 搜索 html 转 实体类 //////////////////////////
+    public static List<HtmlData> getHtmlSearchData(String htmlStr) throws Exception{
+
+        String[] split1 = htmlStr.split("</li>");
+        List<HtmlData> htmlData = new ArrayList<>();
+        for (String str2 : split1){
+            //如果不包含则数据不符合
+            if (str2 == null || str2.equals("") || !str2.contains("alt='"))
+                continue;
+            //跳转链接
+            HtmlData htmlData1 = new HtmlData();
+
+            // 跳转 url
+            String url = Tools.cutStr(str2,"href='","'");
+            htmlData1.setUrl(url);
+
+            // 菜品大图url
+            String imageUrl = Tools.cutStr(str2,"src='","'");
+            htmlData1.setImageUrl(imageUrl);
+
+            //菜品名
+            String titleStr = Tools.cutStr(str2,"alt='","'");
             htmlData1.setTitleStr(titleStr);
 
 

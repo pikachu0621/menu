@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.fragment.app.Fragment;
@@ -41,11 +43,13 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
 
     private final MainActivity activity1;
     private View inflate;
+    private ImageView mF2Image1;
     private SmartRefreshLayout uiRefreshLayout;
     private RecyclerView uiRecycler;
     private AppBarLayout mF1AppBar;
     private View hF1View;
     private RelativeLayout hF1Text1;
+    private EditText searchEdit;
     private FragmentActivity activity;
     private F1RecyclerAdapter f1RecyclerAdapter;
     private List<JsonF1List.DataBean.ItemsBean> itemsBean;
@@ -84,6 +88,15 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
         uiRefreshLayout.setEnableAutoLoadMore(true);
         uiRefreshLayout.setOnRefreshListener(refreshLayout -> load(true));
         uiRefreshLayout.setOnLoadMoreListener(refreshLayout -> load(false));
+
+        mF2Image1.setOnClickListener(v -> {
+            String s = searchEdit.getText().toString();
+            if (s.isEmpty()) {
+                Tools.showToast(activity, "未输入");
+                return;
+            }
+            startSearch(s);
+        });
     }
 
 
@@ -168,17 +181,13 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
 
 
     public static String purifyJson(String json){
-
         String[] types = json.split(",\\{");
-
-
         for (String s2:types){
             if (s2.contains("img\":[")){
                 String s3 = Tools.cutStr(s2, "\"type", null);
                 json = json.replace("{\"type" + s3 + ",", "");
             }
         }
-
         return json.replace("(", "").replace(")", "").replace("\":\"\"","\":null");
     }
 
@@ -190,6 +199,8 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
         mF1AppBar = inflate.findViewById(R.id.m_f1_appBar);
         hF1View = inflate.findViewById(R.id.h_f1_view);
         hF1Text1 = inflate.findViewById(R.id.h_f1_text1);
+        searchEdit = inflate.findViewById(R.id.search_edit);
+        mF2Image1 = inflate.findViewById(R.id.m_f2_image1);
     }
 
 
@@ -224,24 +235,36 @@ public class OneFragment extends BaseFragment implements F1HeaderBanner.OnClickH
     @Override
     public void OnClickHeaderItem(View view, int position, HomeF1Data.Sort sort) {
 
-        showToast("F1 " + position + " data: " + sort.getTitleStr());
+        showToast("F1 " + position + " data: " + sort.getTitleStr() + "  Url:" + sort.getUrl() + " type：" + sort.getToType());
 
         if (sort.getToType() == 1){
             activity1.setPager(1);
             return;
         }
         Intent intent = new Intent(activity, HtmlListActivity.class);
-        intent.putExtra(AppInfo.APP_KEY_INTO,sort);
+        intent.putExtra(AppInfo.APP_KEY_INTO, sort);
         startActivity(intent);
-
     }
+
+
+    private void startSearch(String search){
+        HomeF1Data.Sort sort = new HomeF1Data.Sort();
+        sort.setTitleStr(search);
+        sort.setToType(4);
+        sort.setUrl(AppInfo.getSearchUrl(search, 1));
+        Intent intent = new Intent(activity, HtmlListActivity.class);
+        intent.putExtra(AppInfo.APP_KEY_INTO, sort);
+        startActivity(intent);
+    }
+
+
 
     //推荐列表点击
     @Override
     public void OnClickItem(View view, int position, JsonF1List.DataBean.ItemsBean itemsBean) {
-        showToast("F1 " + position + " data: " + itemsBean.getTitle());
+        showToast("F1 " + position + " data: " + itemsBean.getTitle() + "  Url: " + itemsBean.getPath());
 
-        Tools.startLookActivity(activity,itemsBean.getPath(),itemsBean.getImg(),itemsBean.getTitle());
+        Tools.startLookActivity(activity, itemsBean.getPath(), itemsBean.getImg(), itemsBean.getTitle());
     }
 
 

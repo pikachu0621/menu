@@ -33,6 +33,7 @@ public class AppInfo {
     public static final String APP_API_SORT =  APP_API_HOST + "/fenlei/";
     public static final String APP_API_IMAGE_LIST =  APP_API_HOST +"/ajax/index_search_new.php?type={type}&page={page}";
     public static final String APP_API_SORT_ONE =  APP_API_HOST +"/caipudaquan/";
+    public static final String APP_API_SEARCH_LIST =  APP_API_HOST +"/ajax/search_list_test.php?tab=3&words={words}&page={page}";
 
 
 
@@ -40,8 +41,14 @@ public class AppInfo {
     public static String getUrl(int type, int page) {
         return APP_API_IMAGE_LIST.replace("{type}",""+type).replace("{page}",""+page);
     }
+
+    public static String getSearchUrl(String words, int page) {
+        return APP_API_SEARCH_LIST.replace("{words}",words).replace("{page}",""+page);
+    }
+
+
     public static String getUrl(String type, int page) {
-        return  getUrl(Integer.parseInt(type), page);
+        return getUrl(Integer.parseInt(type), page);
     }
 
 

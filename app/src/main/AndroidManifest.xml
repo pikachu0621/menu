@@ -16,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Menu"
         tools:targetApi="n">
-        <activity android:name=".look.LookActivity"></activity>
+        <activity
+            android:name=".home.one.SearchActivity"
+            android:exported="false" />
+        <activity android:name=".look.LookActivity" />
         <activity android:name=".list.HtmlListActivity" />
         <activity android:name=".home.MainActivity">
             <intent-filter>

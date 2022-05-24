@@ -84,7 +84,9 @@ public class HtmlListActivity extends BaseActivity implements F1RecyclerAdapter.
 
         if (toType == 2) {
             urlTo = AppInfo.getUrl(url, page);
-        } else {
+        } else if (toType == 4) {
+            urlTo = AppInfo.getSearchUrl(serializableExtra.getTitleStr(), page);
+        }else {
             urlTo = url + "p" + page;
         }
 
@@ -116,7 +118,11 @@ public class HtmlListActivity extends BaseActivity implements F1RecyclerAdapter.
                     jsonF1List = new Gson().fromJson(json, JsonF1List.class);
                 } else {
                     try {
-                        htmlData = HomeF1Data.getHtmlData(str);
+                        if (toType == 4) {
+                            htmlData = HomeF1Data.getHtmlSearchData(str);
+                        }else {
+                            htmlData = HomeF1Data.getHtmlData(str);
+                        }
                     } catch (Exception e) {
                         showToast("Html 数据解析失败");
                         return;
